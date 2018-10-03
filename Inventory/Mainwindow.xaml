@@ -1,0 +1,112 @@
+﻿<Window x:Class="Inventory.Mainwindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       
+      xmlns:diagnostics="clr-namespace:System.Diagnostics;assembly=WindowsBase" 
+      xmlns:filter="clr-namespace:DataGridFilterLibrary;assembly=DataGridFilterLibrary"
+
+  
+        xmlns:local="clr-namespace:Inventory"
+        mc:Ignorable="d"
+        Title="Mainwindow" Height="1207.38" Width="1082.483"  WindowState="Maximized" SizeChanged="Window_SizeChanged" WindowStartupLocation="CenterScreen" FontFamily="Calibri" Icon="inventory.png" Closed="Window_Closed">
+    <Grid Margin="0,0,0,-3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <ScrollViewer x:Name="scroll_main" Margin="-1,56,-1,-421" Height="1544" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+            <ScrollViewer.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.06"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0.499"/>
+                </TransformGroup>
+            </ScrollViewer.RenderTransform>
+            <ScrollViewer.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFECECEC" Offset="0.691"/>
+                    <GradientStop Color="#FFCDCECF" Offset="0.791"/>
+                </LinearGradientBrush>
+            </ScrollViewer.Background>
+            <Grid x:Name="grid_main" HorizontalAlignment="Left" Height="1773" VerticalAlignment="Top" Width="1006">
+                <MediaElement x:Name="media_load" Margin="10,10,0,1699" MediaEnded="media_load_MediaEnded" HorizontalAlignment="Left" Width="166" Visibility="Hidden" Source="loading.gif"  />
+                <Image x:Name="image_inventory" Margin="0,31,33,0" HorizontalAlignment="Right" Width="132" Source="inventory.png" Height="111" VerticalAlignment="Top" >
+
+                </Image>
+                <GroupBox x:Name="grp_count" Margin="0,25,521,1637" HorizontalAlignment="Right" Width="478" Background="White">
+                    <Grid>
+                        <Label x:Name="lbl_laptop" Content="Label" HorizontalAlignment="Left" Margin="8,12,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                        <Label x:Name="lbl_laptop_back" Content="Label" HorizontalAlignment="Left" Margin="220,12,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                        <Label x:Name="lbl_desktop" Content="Label" HorizontalAlignment="Left" Margin="8,40,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+                        <Label x:Name="lbl_desktop_back" Content="Label" HorizontalAlignment="Left" Margin="220,40,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" RenderTransformOrigin="0.451,0.463"/>
+                        <Label x:Name="lbl_printer" Content="Label" HorizontalAlignment="Left" Margin="8,67,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" />
+                    </Grid>
+
+                </GroupBox>
+
+
+
+
+                <DataGrid 
+                    ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
+                     TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
+                     ResourceId=DataGridHeaderFilterControlStyle}}"
+                    
+                    
+                    
+                  
+                    ItemsSource="{Binding BindsDirectlyToSource=True}" x:Name="dg_inventory" Height="560" Margin="4,190,187,0" VerticalAlignment="Top" IsReadOnly="True" GotFocus="dg_inventory_GotFocus" FontFamily="Calibri" FontSize="16" GridLinesVisibility="None" AutoGeneratingColumn="dgInventory_AutoGeneratingColumn" Background="{x:Null}" BorderBrush="{x:Null}"  >
+                    <DataGrid.ContextMenu>
+                        <ContextMenu >
+                            <MenuItem Header="Edit" Click="MenuItem_Click"  />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+
+
+                </DataGrid>
+                <DataGrid ItemsSource="{Binding BindsDirectlyToSource=True}" x:Name="dg_history" Height="205" Margin="9,1188,187,0" VerticalAlignment="Top" IsReadOnly="True" FontFamily="Calibri" AutoGeneratingColumn="dg_history_AutoGeneratingColumn" FontSize="16"  GridLinesVisibility="None" Background="{x:Null}" BorderBrush="{x:Null}" >
+
+                </DataGrid>
+                <DataGrid ItemsSource="{Binding BindsDirectlyToSource=True}" x:Name="dg_field_equipment" Height="302" Margin="-5,850,201,0" VerticalAlignment="Top" AutoGeneratingColumn="dg_field_equipment_AutoGeneratingColumn" FontSize="16"  IsReadOnly="True" GridLinesVisibility="None" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu >
+                            <MenuItem Header="Edit" Click="MenuItem_Click"  />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+
+
+                </DataGrid>
+            </Grid>
+
+
+
+
+        </ScrollViewer>
+        <Grid Height="56" VerticalAlignment="Top" Background="#FFA8A8A8">
+            <Button x:Name="btn_new_equip" Height="53" Width="58" Background="{x:Null}" Click="btn_new_equip_Click" BorderBrush="{x:Null}" Margin="0,3,0,0" HorizontalAlignment="Left">
+
+                <Image  Height="44" Width="51" Source="add.png" />
+
+
+
+            </Button>
+            <Button x:Name="btn_export" Height="53" Width="56" Background="{x:Null}" BorderBrush="{x:Null}" Click="btn_export_Click" Margin="63,3,0,0" HorizontalAlignment="Left">
+                <Image Source="export.png" Height="40"/>
+
+            </Button>
+            <Button x:Name="btn_search" Width="49" Background="{x:Null}"  BorderBrush="{x:Null}" Click="btn_search_Click" Margin="124,3,0,3" HorizontalAlignment="Left">
+
+                <Image  Height="44" Width="49" Source="magnifier.png"  />
+
+
+
+            </Button>
+        </Grid>
+
+
+    </Grid>
+</Window>

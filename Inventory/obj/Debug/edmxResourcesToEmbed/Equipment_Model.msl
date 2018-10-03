@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EquipmentModelStoreContainer" CdmEntityContainer="EquipmentEntities">
+    <EntitySetMapping Name="Equipments">
+      <EntityTypeMapping TypeName="EquipmentModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="Field" ColumnName="Field" />
+          <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+          <ScalarProperty Name="Serial_Number" ColumnName="Serial_Number" />
+          <ScalarProperty Name="Eq_Type" ColumnName="Eq_Type" />
+          <ScalarProperty Name="Deployed_To" ColumnName="Deployed_To" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Machine_Name" ColumnName="Machine_Name" />
+          <ScalarProperty Name="Conway_Tag" ColumnName="Conway_Tag" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipment_History">
+      <EntityTypeMapping TypeName="EquipmentModel.Equipment_History">
+        <MappingFragment StoreEntitySet="Equipment_History">
+          <ScalarProperty Name="Field" ColumnName="Field" />
+          <ScalarProperty Name="EQ_History_ID" ColumnName="EQ_History_ID" />
+          <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+          <ScalarProperty Name="Serial_Number" ColumnName="Serial_Number" />
+          <ScalarProperty Name="EQ_Type" ColumnName="EQ_Type" />
+          <ScalarProperty Name="Deployed_To" ColumnName="Deployed_To" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Machine_Name" ColumnName="Machine_Name" />
+          <ScalarProperty Name="Conway_Tag" ColumnName="Conway_Tag" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Create_User" ColumnName="Create_User" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="SSMA_TimeStamp" ColumnName="SSMA_TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Field_Equipment">
+      <EntityTypeMapping TypeName="EquipmentModel.Field_Equipment">
+        <MappingFragment StoreEntitySet="Field_Equipment">
+          <ScalarProperty Name="Office_Location" ColumnName="Office_Location" />
+          <ScalarProperty Name="Printer" ColumnName="Printer" />
+          <ScalarProperty Name="Dock_Station_Count" ColumnName="Dock_Station_Count" />
+          <ScalarProperty Name="Keyboard_Count" ColumnName="Keyboard_Count" />
+          <ScalarProperty Name="Monitor_Count" ColumnName="Monitor_Count" />
+          <ScalarProperty Name="Mouse_Count" ColumnName="Mouse_Count" />
+          <ScalarProperty Name="Equipment_ID" ColumnName="Equipment_ID" />
+          <ScalarProperty Name="Field_ID" ColumnName="Field_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EquipmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Equipment_ID" />
+    </Key>
+    <Property Name="Equipment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Serial_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eq_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Deployed_To" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Make" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Machine_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Conway_Tag" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Create_User" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Create_Date" Type="DateTime" Precision="0" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Equipment_History" Relationship="Self.FK_Equipment_History_Equipment" FromRole="Equipment" ToRole="Equipment_History" />
+    <Property Name="Field" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Field_Equipment" Relationship="EquipmentModel.FK_Field_Employees_Equipment1" FromRole="Equipment" ToRole="Field_Equipment" />
+  </EntityType>
+  <EntityType Name="Equipment_History">
+    <Key>
+      <PropertyRef Name="EQ_History_ID" />
+    </Key>
+    <Property Name="EQ_History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Equipment_ID" Type="Int32" />
+    <Property Name="Serial_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EQ_Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Deployed_To" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Make" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Machine_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Conway_Tag" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Create_User" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Create_Date" Type="DateTime" Precision="0" />
+    <Property Name="Field" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SSMA_TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Equipment" Relationship="Self.FK_Equipment_History_Equipment" FromRole="Equipment_History" ToRole="Equipment" />
+  </EntityType>
+  <Association Name="FK_Equipment_History_Equipment">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+    <End Role="Equipment_History" Type="Self.Equipment_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Equipment_ID" />
+      </Principal>
+      <Dependent Role="Equipment_History">
+        <PropertyRef Name="Equipment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EquipmentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+    <EntitySet Name="Equipment_History" EntityType="Self.Equipment_History" />
+    <AssociationSet Name="FK_Equipment_History_Equipment" Association="Self.FK_Equipment_History_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Equipment_History" EntitySet="Equipment_History" />
+    </AssociationSet>
+    <EntitySet Name="Field_Equipment" EntityType="EquipmentModel.Field_Equipment" />
+    <AssociationSet Name="FK_Field_Employees_Equipment1" Association="EquipmentModel.FK_Field_Employees_Equipment1">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Field_Equipment" EntitySet="Field_Equipment" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Field_Equipment">
+    <Key>
+      <PropertyRef Name="Field_ID" />
+    </Key>
+    <Property Name="Field_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Equipment_ID" Type="Int32" Nullable="false" />
+    <Property Name="Mouse_Count" Type="Int32" />
+    <Property Name="Monitor_Count" Type="Int32" />
+    <Property Name="Keyboard_Count" Type="Int32" />
+    <Property Name="Dock_Station_Count" Type="Int32" />
+    <Property Name="Printer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Office_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Equipment" Relationship="EquipmentModel.FK_Field_Employees_Equipment1" FromRole="Field_Equipment" ToRole="Equipment" />
+  </EntityType>
+  <Association Name="FK_Field_Employees_Equipment1">
+    <End Type="EquipmentModel.Equipment" Role="Equipment" Multiplicity="1" />
+    <End Type="EquipmentModel.Field_Equipment" Role="Field_Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Equipment_ID" />
+      </Principal>
+      <Dependent Role="Field_Equipment">
+        <PropertyRef Name="Equipment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

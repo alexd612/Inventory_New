@@ -1,0 +1,43 @@
+﻿<Window x:Class="Inventory.Modify"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Inventory"
+        mc:Ignorable="d"
+        Title="Modify" Height="491.913" Width="432.134" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing" Loaded="Window_Loaded" Icon="inventory.png">
+    <Grid x:Name="grid_modify">
+        <Label Content="Serial Number:" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Equipment Type:" HorizontalAlignment="Left" Margin="9,52,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,0.462" FontFamily="Calibri" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Status:" HorizontalAlignment="Left" Margin="12,86,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Deployed To:" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Make:" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Model:" HorizontalAlignment="Left" Margin="9,171,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Machine Name:" HorizontalAlignment="Left" Margin="9,202,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.579,0.154" FontFamily="Calibri" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Conway Tag:" HorizontalAlignment="Left" Margin="8,236,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Notes:" HorizontalAlignment="Left" Margin="9,265,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="14" FontWeight="Bold"/>
+        <TextBox x:Name="txt_serial_number" HorizontalAlignment="Left" Height="23" Margin="152,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" BorderBrush="#FFECECEC" Background="White" FontFamily="Calibri" Text="{Binding Serial_Number}"/>
+        <ComboBox x:Name="cbx_equip_type" HorizontalAlignment="Left" Margin="151,56,0,0" VerticalAlignment="Top" Width="237" FontFamily="Calibri" IsEditable="True" Text="{Binding Equipment_Type}" >
+        </ComboBox>
+
+        <ComboBox x:Name="cbx_status" HorizontalAlignment="Left" Margin="152,86,0,0" VerticalAlignment="Top" Width="110" FontFamily="Calibri" DropDownOpened="cbx_status_DropDownOpened"  Text="{Binding Status}">
+            <ComboBoxItem Name="cbi1">Deployed</ComboBoxItem>
+            <ComboBoxItem Name="cbi2">Deployed/Remote</ComboBoxItem>
+            <ComboBoxItem Name="cbi3">In Server Room</ComboBoxItem>
+            <ComboBoxItem Name="cbi4">Recylced</ComboBoxItem>
+        </ComboBox>
+        
+        <ComboBox x:Name="cbx_Deployed_To" HorizontalAlignment="Left" Margin="152,116,0,0" VerticalAlignment="Top" Width="237" FontFamily="Calibri" DropDownOpened="cbx_Deployed_To_DropDownOpened" IsEditable="True"  Text="{Binding Deployed_To}" >
+            
+            
+            
+            
+        </ComboBox>
+        <TextBox x:Name="txt_make" HorizontalAlignment="Left" Height="23" Margin="153,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="236" BorderBrush="#FFECECEC" FontFamily="Calibri" Text="{Binding Make}"  />
+        <TextBox x:Name="txt_model" HorizontalAlignment="Left" Height="23" Margin="153,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" BorderBrush="#FFECECEC" FontFamily="Calibri"  Text="{Binding Model}" />
+        <TextBox x:Name="txt_machine_name" HorizontalAlignment="Left" Height="23" Margin="153,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" BorderBrush="#FFECECEC" FontFamily="Calibri" Text="{Binding Machine_Name}"/>
+        <TextBox x:Name="txt_conway_tag" HorizontalAlignment="Left" Height="23" Margin="153,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="111" BorderBrush="#FFECECEC" FontFamily="Calibri" Text="{Binding Conway_Tag}"/>
+        <TextBox x:Name="txt_notes" HorizontalAlignment="Left" Height="91" Margin="153,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="235" BorderBrush="#FFECECEC" FontFamily="Calibri" Text="{Binding Notes}"/>
+        <Button x:Name="btn_submit" Content="Submit" HorizontalAlignment="Left" Margin="285,385,0,0" VerticalAlignment="Top" Width="103" Height="34" FontFamily="Calibri" Click="btn_submit_Click" FontWeight="Bold" Background="Gainsboro"/>
+    </Grid>
+</Window>

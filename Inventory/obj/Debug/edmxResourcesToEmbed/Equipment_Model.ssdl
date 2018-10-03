@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EquipmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Equipment_ID" />
+    </Key>
+    <Property Name="Equipment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Serial_Number" Type="nvarchar(max)" />
+    <Property Name="Eq_Type" Type="nvarchar" MaxLength="255" />
+    <Property Name="Deployed_To" Type="nvarchar" MaxLength="255" />
+    <Property Name="Status" Type="nvarchar" MaxLength="255" />
+    <Property Name="Make" Type="nvarchar" MaxLength="255" />
+    <Property Name="Model" Type="nvarchar(max)" />
+    <Property Name="Machine_Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Conway_Tag" Type="nvarchar" MaxLength="255" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="Create_User" Type="nvarchar" MaxLength="255" />
+    <Property Name="Create_Date" Type="date" />
+    <Property Name="Field" Type="nvarchar" MaxLength="50" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipment_History">
+    <Key>
+      <PropertyRef Name="EQ_History_ID" />
+    </Key>
+    <Property Name="EQ_History_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Equipment_ID" Type="int" />
+    <Property Name="Serial_Number" Type="nvarchar(max)" />
+    <Property Name="EQ_Type" Type="nvarchar" MaxLength="255" />
+    <Property Name="Deployed_To" Type="nvarchar" MaxLength="255" />
+    <Property Name="Status" Type="nvarchar" MaxLength="255" />
+    <Property Name="Make" Type="nvarchar" MaxLength="255" />
+    <Property Name="Model" Type="nvarchar" MaxLength="255" />
+    <Property Name="Machine_Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Conway_Tag" Type="nvarchar" MaxLength="255" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="Create_User" Type="nvarchar" MaxLength="255" />
+    <Property Name="Create_Date" Type="datetime2" Precision="0" />
+    <Property Name="Field" Type="nvarchar" MaxLength="50" />
+    <Property Name="SSMA_TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Field_Equipment">
+    <Key>
+      <PropertyRef Name="Field_ID" />
+    </Key>
+    <Property Name="Field_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Equipment_ID" Type="int" Nullable="false" />
+    <Property Name="Mouse_Count" Type="int" />
+    <Property Name="Monitor_Count" Type="int" />
+    <Property Name="Keyboard_Count" Type="int" />
+    <Property Name="Dock_Station_Count" Type="int" />
+    <Property Name="Printer" Type="nvarchar" MaxLength="50" />
+    <Property Name="Office_Location" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Equipment_History_Equipment">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="0..1" />
+    <End Role="Equipment_History" Type="Self.Equipment_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Equipment_ID" />
+      </Principal>
+      <Dependent Role="Equipment_History">
+        <PropertyRef Name="Equipment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Field_Equipment_Equipment">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="Field_Equipment" Type="Self.Field_Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Equipment_ID" />
+      </Principal>
+      <Dependent Role="Field_Equipment">
+        <PropertyRef Name="Equipment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EquipmentModelStoreContainer">
+    <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equipment_History" EntityType="Self.Equipment_History" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Field_Equipment" EntityType="Self.Field_Equipment" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Equipment_History_Equipment" Association="Self.FK_Equipment_History_Equipment">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="Equipment_History" EntitySet="Equipment_History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Field_Equipment_Equipment" Association="Self.FK_Field_Equipment_Equipment">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="Field_Equipment" EntitySet="Field_Equipment" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
